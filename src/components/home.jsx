@@ -9,13 +9,11 @@ export default function HomeForm() {
     const [days, setDays] = useState([]);
     const [colors, setColors] = useState(["white", "white", "white", "white", "white", "white", "white"])
 
-
-
-
-    // FIX BUGS HERE
     const handleDaySelection = (event) => {
         const daySelected = event.currentTarget
         const dayText = daySelected.innerText
+
+       
 
         if (!(days.includes(dayText))) {
             setDays(prevDays => [...prevDays, dayText])
@@ -23,35 +21,35 @@ export default function HomeForm() {
             setColors(prevColors => {
                 switch (dayText) {
                     case "Monday":
-                        prevColors[0] = "red"
+                        prevColors[0] = "green"
                         break;
                     case "Tuesday":
-                        prevColors[1] = "red"
+                        prevColors[1] = "green"
                         break;
                     case "Wednesday":
-                        prevColors[2] = "red"
+                        prevColors[2] = "green"
                         break;
                     case "Thursday":
-                        prevColors[3] = "red"
+                        prevColors[3] = "green"
                         break;
                     case "Friday":
-                        prevColors[4] = "red"
+                        prevColors[4] = "green"
                         break;
                     case "Saturday":
-                        prevColors[5] = "red"
+                        prevColors[5] = "green"
                         break;
                     case "Sunday":
-                        prevColors[6] = "red"
+                        prevColors[6] = "green"
                         break;
                 }
-                
+
                 return prevColors;
             })
         }
-        else if ((days.includes(dayText))) {
-            setDays(days.filter(d => d === dayText))
+        else {
+            setDays(days.filter(d => d !== dayText))
 
-           
+
             setColors(prevColors => {
                 switch (dayText) {
                     case "Monday":
@@ -75,18 +73,14 @@ export default function HomeForm() {
                     case "Sunday":
                         prevColors[6] = "white"
                         break;
-              
+
                 }
                 return prevColors;
             })
-    
-        
+
+
         }
-        // TO HERE
-
-        console.log(days)
-        console.log(colors)
-
+      
 
 
 
