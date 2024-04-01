@@ -12,6 +12,7 @@ export default function HomeForm() {
 
 
 
+    // FIX BUGS HERE
     const handleDaySelection = (event) => {
         const daySelected = event.currentTarget
         const dayText = daySelected.innerText
@@ -27,34 +28,61 @@ export default function HomeForm() {
                     case "Tuesday":
                         prevColors[1] = "red"
                         break;
-                    case "Tuesday":
+                    case "Wednesday":
                         prevColors[2] = "red"
                         break;
-                    case "Tuesday":
+                    case "Thursday":
                         prevColors[3] = "red"
                         break;
-                    case "Tuesday":
+                    case "Friday":
                         prevColors[4] = "red"
                         break;
-                    case "Tuesday":
+                    case "Saturday":
                         prevColors[5] = "red"
                         break;
-                    case "Tuesday":
+                    case "Sunday":
                         prevColors[6] = "red"
                         break;
                 }
-            
-
+                
                 return prevColors;
-            }
-
-            )
-
-
-
-
+            })
         }
+        else if ((days.includes(dayText))) {
+            setDays(days.filter(d => d === dayText))
 
+           
+            setColors(prevColors => {
+                switch (dayText) {
+                    case "Monday":
+                        prevColors[0] = "white"
+                        break;
+                    case "Tuesday":
+                        prevColors[1] = "white"
+                        break;
+                    case "Wednesday":
+                        prevColors[2] = "white"
+                        break;
+                    case "Thursday":
+                        prevColors[3] = "white"
+                        break;
+                    case "Friday":
+                        prevColors[4] = "white"
+                        break;
+                    case "Saturday":
+                        prevColors[5] = "white"
+                        break;
+                    case "Sunday":
+                        prevColors[6] = "white"
+                        break;
+              
+                }
+                return prevColors;
+            })
+    
+        
+        }
+        // TO HERE
 
         console.log(days)
         console.log(colors)
