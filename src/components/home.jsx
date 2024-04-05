@@ -9,11 +9,12 @@ export default function HomeForm() {
     const [days, setDays] = useState([]);
     const [colors, setColors] = useState(["white", "white", "white", "white", "white", "white", "white"])
 
+    //TODO: add form input into this state
+    const [data, setData] = useState([])
+
     const handleDaySelection = (event) => {
         const daySelected = event.currentTarget
         const dayText = daySelected.innerText
-
-       
 
         if (!(days.includes(dayText))) {
             setDays(prevDays => [...prevDays, dayText])
@@ -99,32 +100,55 @@ export default function HomeForm() {
                     <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[5] }}>Saturday</div></Col>
                     <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[6] }}>Sunday</div></Col>
                 </Row>
-
-
             </Container>)
+    }
+
+    const handleScheduleAdd = (event) =>
+    {
+
+        event.preventDefault()
+        console.log(event.target[0].value)
+        console.log(event.target[1].value)
+        console.log(event.target[2].value)
+
+        const textInput = event.target[0].value
+        const timeInput = event.target[1].value
+        const recurringStatus = event.target[2].value
+        
+        const dataObject = {
+            item: textInput,
+            time: timeInput,
+            reccuring: recurringStatus,
+            selectedDays: days
+        }
+
+        setData(prevData => setData([...prevData, dataObject]))
+        console.log(dataObject)
 
     }
 
 
+    useEffect( () => {
+        console.log(days)
+    }, [days]) 
 
+    useEffect( () => {
+        console.log(data)
+    }, [data]) 
 
-
-    return (
+    return (<>
         <div id="home-wrapper">
-            <Form className="form">
+            <Form className="form" onSubmit={handleScheduleAdd}>
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Add to schedule</Form.Label>
-                    <Form.Control type="email" placeholder="Enter event" />
+                    <Form.Control type="text" placeholder="Enter event" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicTime">
                     <Form.Label>Time for reminder</Form.Label>
                     <Form.Control type="time" placeholder="Time" />
                 </Form.Group>
+
                 <FormDaySelector />
-
-
-
-
 
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Recurring" />
@@ -133,6 +157,20 @@ export default function HomeForm() {
                     Submit
                 </Button>
             </Form>
+
+            
         </div>
-    )
+        <div className="container-flex-col">
+            <div>this is were function will go</div>
+        </div>
+        </>)
+
+    
 }
+
+//problem: need task information to be stored in a useState of array.
+
+/* solution:
+assign the 3 variables to a object and add it to the State-array.
+
+*/

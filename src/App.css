@@ -5,6 +5,7 @@
 
 #home-wrapper{
   margin-top: 50px;
+  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -41,3 +42,8 @@
 }
 
 
+.container-flex-col{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
