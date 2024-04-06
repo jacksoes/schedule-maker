@@ -46,4 +46,18 @@
   display: flex;
   justify-content: center;
   align-content: center;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+
+.remove-object-container{
+  height: 100%;
+  width: 80%;
+}
+
+.remove-object-container *{
+  background-color: rgba(224, 255, 255);
+
 }

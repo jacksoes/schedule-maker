@@ -1,8 +1,8 @@
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Color } from 'p5';
 
 export default function HomeForm() {
 
@@ -85,20 +85,7 @@ export default function HomeForm() {
     }
 
 
-    const FormDaySelector = () => {
-        return (
-            <Container id="daySelector-container" fluid>
-                <Row>
-                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[0] }}>Monday</div></Col>
-                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[1] }}>Tuesday</div></Col>
-                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[2] }}>Wednesday</div></Col>
-                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[3] }}>Thursday</div></Col>
-                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[4] }}>Friday</div></Col>
-                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[5] }}>Saturday</div></Col>
-                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[6] }}>Sunday</div></Col>
-                </Row>
-            </Container>)
-    }
+    
 
     //TODO: add form input into this state
     const [data, setData] = useState([])
@@ -122,21 +109,32 @@ export default function HomeForm() {
             selectedDays: days
         }
 
-        setData(prevData => setData([...prevData, dataObject]))
+        setData(prevData => [...prevData, dataObject])
         console.log(dataObject)
 
     }
 
-    const DataOutput = () => {
-        return(<div>
-            {data.map((dataItem) => (
-        <div>{dataItem.item} this is days {dataItem.selectedDays.join()}</div>))}
+  
+
+    const dataShowcase = () => data.map((dataItem, index) =>
+    (<div key={index} class="remove-object-container">
+        <Form>
+        <Container>
+            <Row>
+                <Col>{dataItem.item}</Col>
+                <Col>{dataItem.item}</Col>
+                <Col>{dataItem.item}</Col>
+                <Col>{dataItem.item}</Col>
+                <Col>{dataItem.item}</Col>
+            </Row>
+        </Container>
+        </Form>
         </div>)
-    }
+        )
 
  
-    
 
+    
 
     useEffect( () => {
         console.log(days)
@@ -145,6 +143,21 @@ export default function HomeForm() {
     useEffect( () => {
         console.log(data)
     }, [data]) 
+
+    const FormDaySelector = () => {
+        return (
+            <Container id="daySelector-container" fluid>
+                <Row>
+                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[0] }}>Monday</div></Col>
+                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[1] }}>Tuesday</div></Col>
+                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[2] }}>Wednesday</div></Col>
+                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[3] }}>Thursday</div></Col>
+                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[4] }}>Friday</div></Col>
+                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[5] }}>Saturday</div></Col>
+                    <Col><div className="day-button" onClick={handleDaySelection} style={{ background: colors[6] }}>Sunday</div></Col>
+                </Row>
+            </Container>)
+    }
 
     return (<>
         <div id="home-wrapper">
@@ -171,7 +184,7 @@ export default function HomeForm() {
             
         </div>
         <div className="container-flex-col">
-            <DataOutput />
+            {dataShowcase()}
             
         </div>
         </>)
