@@ -9,9 +9,6 @@ export default function HomeForm() {
     const [days, setDays] = useState([]);
     const [colors, setColors] = useState(["white", "white", "white", "white", "white", "white", "white"])
 
-    //TODO: add form input into this state
-    const [data, setData] = useState([])
-
     const handleDaySelection = (event) => {
         const daySelected = event.currentTarget
         const dayText = daySelected.innerText
@@ -103,6 +100,9 @@ export default function HomeForm() {
             </Container>)
     }
 
+    //TODO: add form input into this state
+    const [data, setData] = useState([])
+
     const handleScheduleAdd = (event) =>
     {
 
@@ -126,6 +126,16 @@ export default function HomeForm() {
         console.log(dataObject)
 
     }
+
+    const DataOutput = () => {
+        return(<div>
+            {data.map((dataItem) => (
+        <div>{dataItem.item} this is days {dataItem.selectedDays.join()}</div>))}
+        </div>)
+    }
+
+ 
+    
 
 
     useEffect( () => {
@@ -161,7 +171,8 @@ export default function HomeForm() {
             
         </div>
         <div className="container-flex-col">
-            <div>this is were function will go</div>
+            <DataOutput />
+            
         </div>
         </>)
 
