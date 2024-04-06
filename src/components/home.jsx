@@ -114,18 +114,23 @@ export default function HomeForm() {
 
     }
 
+
+    const handleDataItemRemove = (event, index) => {
+        event.preventDefault()
+        console.log(event)
+    }
   
 
     const dataShowcase = () => data.map((dataItem, index) =>
-    (<div key={index} class="remove-object-container">
-        <Form>
+    (<div key={index} className="remove-object-container">
+        <Form onSubmit={handleDataItemRemove}>
         <Container>
             <Row>
-                <Col>{dataItem.item}</Col>
-                <Col>{dataItem.item}</Col>
-                <Col>{dataItem.item}</Col>
-                <Col>{dataItem.item}</Col>
-                <Col>{dataItem.item}</Col>
+                <Col xs={1}><Button type="submit" variant="danger" id="remove-button">remove</Button></Col>
+                <Col xs={4}>{dataItem.item}</Col>
+                <Col xs={4}>{dataItem.selectedDays.join()}</Col>
+                <Col xs={2}>{dataItem.time}</Col>
+                <Col xs={1}>{dataItem.reccuring}</Col>
             </Row>
         </Container>
         </Form>
