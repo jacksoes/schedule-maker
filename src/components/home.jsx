@@ -115,15 +115,16 @@ export default function HomeForm() {
     }
 
 
-    const handleDataItemRemove = (event, index) => {
-        event.preventDefault()
-        console.log(event)
+    const handleDataItemRemove = (index) => {
+        setData(d => d.filter((_, i) => i !== index))
+  
+        console.log(index)
     }
   
 
     const dataShowcase = () => data.map((dataItem, index) =>
     (<div key={index} className="remove-object-container">
-        <Form onSubmit={handleDataItemRemove}>
+        <Form onSubmit={(e) => { e.preventDefault(); handleDataItemRemove(index)}}>
         <Container>
             <Row>
                 <Col xs={1}><Button type="submit" variant="danger" id="remove-button">remove</Button></Col>
