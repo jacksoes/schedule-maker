@@ -78,30 +78,25 @@ export default function HomeForm() {
 
 
         }
-      
+
 
 
 
     }
 
 
-    
 
-    //TODO: add form input into this state
+
+  
     const [data, setData] = useState([])
 
-    const handleScheduleAdd = (event) =>
-    {
-
+    const handleScheduleAdd = (event) => {
         event.preventDefault()
-        console.log(event.target[0].value)
-        console.log(event.target[1].value)
-        console.log(event.target[2].value)
 
         const textInput = event.target[0].value
         const timeInput = event.target[1].value
         const recurringStatus = event.target[2].value
-        
+
         const dataObject = {
             item: textInput,
             time: timeInput,
@@ -110,45 +105,29 @@ export default function HomeForm() {
         }
 
         setData(prevData => [...prevData, dataObject])
-        console.log(dataObject)
-
     }
 
 
     const handleDataItemRemove = (index) => {
         setData(d => d.filter((_, i) => i !== index))
-  
-        console.log(index)
     }
-  
+
 
     const dataShowcase = () => data.map((dataItem, index) =>
     (<div key={index} className="remove-object-container">
-        <Form onSubmit={(e) => { e.preventDefault(); handleDataItemRemove(index)}}>
-        <Container>
-            <Row>
-                <Col xs={1}><Button type="submit" variant="danger" id="remove-button">remove</Button></Col>
-                <Col xs={4}>{dataItem.item}</Col>
-                <Col xs={4}>{dataItem.selectedDays.join()}</Col>
-                <Col xs={2}>{dataItem.time}</Col>
-                <Col xs={1}>{dataItem.reccuring}</Col>
-            </Row>
-        </Container>
+        <Form onSubmit={(e) => { e.preventDefault(); handleDataItemRemove(index) }}>
+            <Container>
+                <Row>
+                    <Col xs={1}><Button type="submit" variant="danger" id="remove-button">remove</Button></Col>
+                    <Col xs={4}>{dataItem.item}</Col>
+                    <Col xs={4}>{dataItem.selectedDays.join()}</Col>
+                    <Col xs={2}>{dataItem.time}</Col>
+                    <Col xs={1}>{dataItem.reccuring}</Col>
+                </Row>
+            </Container>
         </Form>
-        </div>)
-        )
-
- 
-
-    
-
-    useEffect( () => {
-        console.log(days)
-    }, [days]) 
-
-    useEffect( () => {
-        console.log(data)
-    }, [data]) 
+    </div>)
+    )
 
     const FormDaySelector = () => {
         return (
@@ -187,20 +166,12 @@ export default function HomeForm() {
                 </Button>
             </Form>
 
-            
+
         </div>
         <div className="container-flex-col">
             {dataShowcase()}
-            
         </div>
-        </>)
+    </>)
 
-    
+
 }
-
-//problem: need task information to be stored in a useState of array.
-
-/* solution:
-assign the 3 variables to a object and add it to the State-array.
-
-*/
